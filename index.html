@@ -1,238 +1,78 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI圈日报 - 每日AI行业最新动态</title>
+    <title>AI行业日报集合</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 800px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-        
-        .header .date {
-            font-size: 0.9em;
-            color: #a0a0a0;
-            margin-bottom: 10px;
-        }
-        
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .header .subtitle {
-            color: #888;
-            font-size: 1.1em;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .content {
-            padding: 30px;
-        }
-        
-        .section {
-            margin-bottom: 30px;
-        }
-        
-        .section-title {
-            font-size: 1.5em;
-            color: #1a1a2e;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #667eea;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .latest-report {
-            background: linear-gradient(135deg, #fff5f5 0%, #ffe6e6 100%);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border-left: 5px solid #e74c3c;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .latest-report h3 {
-            color: #c0392b;
-            font-size: 1.3em;
-            margin-bottom: 15px;
-        }
-        
-        .latest-report-date {
-            color: #7f8c8d;
-            font-size: 0.9em;
-            margin-bottom: 10px;
-        }
-        
-        .latest-report-link {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            margin-top: 15px;
-        }
-        
-        .latest-report-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
-        }
-        
-        .report-list {
-            display: grid;
-            gap: 15px;
-        }
-        
-        .report-item {
-            background: #f8f9fa;
-            border-radius: 12px;
             padding: 20px;
-            border-left: 4px solid #667eea;
-            transition: all 0.3s ease;
+            background-color: #f5f5f5;
         }
-        
+        .header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        .report-list {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .report-list h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .report-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
         .report-item:hover {
-            background: #e9ecef;
-            transform: translateX(5px);
+            background-color: #f8f9fa;
         }
-        
-        .report-link {
+        .report-item a {
+            font-size: 18px;
             color: #2c3e50;
             text-decoration: none;
-            font-size: 1.1em;
             font-weight: 600;
         }
-        
-        .report-link:hover {
-            color: #667eea;
+        .report-item a:hover {
+            color: #3498db;
+            text-decoration: underline;
         }
-        
         .report-date {
+            font-size: 14px;
             color: #7f8c8d;
-            font-size: 0.85em;
-            margin-top: 5px;
-        }
-        
-        .repo-info {
-            background: linear-gradient(135deg, #f0fff4 0%, #e6ffed 100%);
-            border-left: 4px solid #27ae60;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 30px;
-        }
-        
-        .repo-info h4 {
-            color: #27ae60;
-            margin-bottom: 10px;
-        }
-        
-        .footer {
-            text-align: center;
-            padding: 20px;
-            color: #7f8c8d;
-            font-size: 0.9em;
-            border-top: 1px solid #eee;
-            margin-top: 30px;
-        }
-        
-        @media (max-width: 600px) {
-            .header h1 {
-                font-size: 2em;
-            }
-            .content {
-                padding: 20px;
-            }
-            .section-title {
-                font-size: 1.2em;
-            }
+            margin-left: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>AI圈日报</h1>
-            <div class="subtitle">每日追踪AI行业最新动态 · 模型发布 · 融资事件 · 技术突破</div>
-        </div>
-        
-        <div class="content">
-            <div class="latest-report">
-                <h3>📢 最新报告</h3>
-                <div class="latest-report-date">发布于 2026年2月5日</div>
-                <p>头条：Sam Altman对Claude超级碗广告反应激烈；Google Gemini月活突破7.5亿；A16z募集17亿美元AI基础设施基金...</p>
-                <a href="20260205.html" class="latest-report-link">阅读完整报告</a>
-            </div>
-            
-            <div class="section">
-                <div class="section-title">📁 往期报告</div>
-                
-                <div class="report-list">
-                    <div class="report-item">
-                        <a href="20260205.html" class="report-link">2026年2月5日AI圈日报</a>
-                        <div class="report-date">发布于 2026-02-05</div>
-                    </div>
-                    <div class="report-item">
-                        <a href="20260204.html" class="report-link">2026年2月4日AI圈日报</a>
-                        <div class="report-date">发布于 2026-02-05（补录）</div>
-                    </div>
-                    <!-- 未来的报告将自动添加在这里 -->
-                </div>
-            </div>
-            
-            <div class="repo-info">
-                <h4>ℹ️ 仓库说明</h4>
-                <p>这是AI圈日报的官方仓库，每日更新AI行业最新动态，包括：</p>
-                <ul>
-                    <li>📰 今日头条 - 行业重磅新闻</li>
-                    <li>🔬 前沿研究 - 顶会论文与技术突破</li>
-                    <li>🛠️ 新工具与模型 - 最新AI产品发布</li>
-                    <li>📊 今日数据 - 关键行业指标</li>
-                </ul>
-                <p>访问地址：<a href="https://shayne2001.github.io/ai-news-daily" target="_blank">https://shayne2001.github.io/ai-news-daily</a></p>
-                <p style="margin-top:10px; color:#666; font-size:0.9em;">💡 提示：所有新闻均附具体来源链接，可点击查看原文</p>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>© 2026 AI圈日报 · 每日AI行业动态追踪</p>
-        </div>
+    <div class="header">
+        <h1>AI行业日报集合</h1>
+        <p>每日更新AI行业最新动态、前沿研究与融资信息</p>
+    </div>
+
+    <div class="report-list">
+        <h2>📁 所有日报</h2>
+        <div class="report-item"><a href="20260206.html" target="_blank">2026年02月06日 AI行业日报</a><span class="report-date">2026年02月06日</span></div>
+        <div class="report-item"><a href="20260205.html" target="_blank">2026年02月05日 AI行业日报</a><span class="report-date">2026年02月05日</span></div>
+        <div class="report-item"><a href="20260204.html" target="_blank">2026年02月04日 AI行业日报</a><span class="report-date">2026年02月04日</span></div>
     </div>
 </body>
 </html>
